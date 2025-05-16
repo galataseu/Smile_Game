@@ -29,19 +29,25 @@
       let divis = document.getElementsByTagName("div");
       //percorremos todas as divs armazenadas
       for (i = 0; i < divis.length; i++) {
-        //verificamos se sao as divs com ids 0 ou 1 ou 2
-        if (divis[i].id == 0 || divis[i].id == 1 || divis[i].id == 2) {
+        //verificamos se sao as divs com ids 0 ou ate 11
+        if (divis[i].id == 0 || divis[i].id == 1 || divis[i].id == 2 || divis[i].id == 3 || divis[i].id == 4 || divis[i].id == 5 || divis[i].id == 6 
+          || divis[i].id == 7 || divis[i].id == 8 || divis[i].id == 9 || divis[i].id == 10 || divis[i].id == 11) {
           //alteramos a classe css das divs 0, 1 e 2 (className)
           divis[i].className = "inicial";
         }
       }
 
-      //armazenamos a imagem do Smile na variável imagem (getElementById)
+      //armazenamos a imagem do Smile e do Sad na variáveis imagem e imagem2 (getElementById)
       let imagem = document.getElementById("imagem");
+      let imagem2 = document.getElementById("imagem2");
       //se a imagem nao for vazia (se ela existir)
       if (imagem != "") {
         //removemos a imagem do Smile
         imagem.remove();
+      }
+      if (imagem2 != "") {
+        //removemos a imagem do Sad
+        imagem2.remove();
       }
     }
 
@@ -59,10 +65,22 @@
       //altera a classe CSS da <div> escolhida pelo jogador (className)
       obj.className = "acertou";
       //Criar uma constante img que armazena um novo objeto imagem com largura de 100px
-      const img = new Image(100);
+      const img = new Image(120);
       img.id = "imagem";
       //altera o atributo src (source) da imagem criada
-      img.src = "https://upload.wikimedia.org/wikipedia/commons/2/2e/Oxygen480-emotes-face-smile-big.svg";
+      img.src = "../smile.png";
+      //adiciona a imagem criada na div (obj) escolhida pelo jogador (appendChild)
+      obj.appendChild(img);
+    }
+
+    function errou(obj) {
+      //altera a classe CSS da <div> escolhida pelo jogador (className)
+      obj.className = "errou";
+      //Criar uma constante img que armazena um novo objeto imagem com largura de 100px
+      const img = new Image(80);
+      img.id = "imagem2";
+      //altera o atributo src (source) da imagem criada
+      img.src = "../sad.png";
       //adiciona a imagem criada na div (obj) escolhida pelo jogador (appendChild)
       obj.appendChild(img);
     }
@@ -75,15 +93,15 @@
         jogar = false;
         //incrementa as tentativas
         tentativas++;
-        //verifica se jogou 3 vezes
-        if (tentativas == 3) {
+        //verifica se jogou 24 vezes
+        if (tentativas == 24) {
           //oculta o botao joganovamente alterando a classe css (getElementById e className)
           btnJogarNovamente.className = 'invisivel';
           //mostra o botao reiniciar alterando a classe css (getElementById e className)
           btnReiniciar.className = 'visivel';
         }
         //a variável sorteado recebe um valor inteiro (Math.floor) aleatório (Math.random)
-        let sorteado = Math.floor(Math.random() * 3);
+        let sorteado = Math.floor(Math.random() * 12);
         //se o id da <div> escolhida pelo jogador for igual ao número sorteado
         if (obj.id == sorteado) {
           //chama a funçao acertou passando a div escolhida pelo jogador
@@ -92,7 +110,7 @@
           acertos++;
         } else {//se errou a tentativa
           //altera a classe da <div> escolhida pelo jogador para a classe errou
-          obj.className = "errou";
+          errou(obj);
           //armazena a div aonde Smile está escondido (getElementById)
           const objSorteado = document.getElementById(sorteado);
           //chama a funçao acertou para mostrar a div aonde está o Smile
@@ -107,4 +125,18 @@
 
 //adiciona eventos aos botões
 btnJogarNovamente.addEventListener('click', jogarNovamente);
+document.addEventListener('keydown', function (event) {
+  if (tentativas <= 23) {
+  if (event.code === 'Space') {
+    event.preventDefault();
+    btnJogarNovamente.click();
+  }
+}});
 btnReiniciar.addEventListener('click', reiniciar);
+document.addEventListener('keydown', function (event) {
+  if (tentativas == 24) {
+  if (event.code === 'Space') {
+    event.preventDefault();
+    btnReiniciar.click();
+  }
+}});

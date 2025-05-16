@@ -10,28 +10,46 @@
     background-color: lightgrey;
     width: 150px;
     height: 200px;
-    border: 15px solid green;
+    border: 5px solid rgb(36, 39, 50);
     padding: 10px;
     margin: 20px;
+    border-radius: 25px;
+    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.304);
+    transition: all 0.5s;
   }
+    .inicial:hover{
+      width: 160px;
+      height: 210px;
+      font-size: 110px;
+      background-color: rgb(230, 230, 230);
+      border: 4px solid rgb(71, 76, 95);
+    }
+
   .acertou {
-    text-align: center;
-    color: yellow;
-    background-color: LawnGreen;
-    width: 150px;
-    height: 200px;
-    border: 15px solid yellow;
+    text-align: center; 
+    font-size: 1px;
+    color: rgba(255, 255, 0, 0);
+    background-color: lightgray;
+    width: 170px;
+    height: 220px;
+    border: 15px solid rgb(0, 158, 63);
     padding: 10px;
     margin: 20px;
+    border-radius: 25px;
+    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.304);
+    transition: all 0.5s;
   }
   .errou {
     text-align: center;
-    font-size: 100px;
-    color: white;
-    background-color: red;
-    width: 150px;
-    height: 200px;
-    border: 15px solid black;
+    font-size: 1px;
+    color: rgba(146, 18, 37, 0);
+    background-color: lightgray;
+    width: 130px;
+    height: 180px;
+    border: 15px solid rgb(226, 27, 50);
     padding: 10px;
     margin: 20px;
+    border-radius: 25px;
+    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.304);
+    transition: all 0.5s;
   }
